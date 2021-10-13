@@ -17,7 +17,7 @@
     
   }
   .img-logo{
-      height: 150px;
+      height: 125px;
       width:150px;
       background-size: cover;
   }
@@ -36,7 +36,6 @@
     border-radius: 20px;
     background: #fff;
     border: none;
-    height: 445px;
     position: relative;
   }
   
@@ -52,7 +51,7 @@
     border-width: 3px;
     box-shadow: none;
   }
-  
+
   .text-danger{
     font-size: 12px;
   }
@@ -75,3 +74,10 @@
     font-size: 15px;
   }
   
+  .footer{
+    padding-top: 10px;
+    padding-bottom: 0px;
+    position:fixed;
+    bottom:0;
+    width:100%;
+  }
