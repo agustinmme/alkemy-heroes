@@ -1,59 +1,67 @@
-import { useState } from "react";
+
+import React from "react";
 import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <div className="col-lg-6">
-        <div className="row px-3">
-          
-          <label className="mb-1">
-            <h6 className="mb-0 text-sm">Email Address</h6>
-          </label>
-          <input
-            className="mb-4"
-            type="text"
-            name="email"
-            placeholder="Enter a valid email address"
-          />
+    <>
+    <div className="bg">
+    <div className="d-flex justify-content-center align-items-center container">
+      <div className="card">
+        <img
+          src="https://media-exp1.licdn.com/dms/image/C4D0BAQEao2V2j5tDnw/company-logo_200_200/0/1625236028053?e=1642032000&v=beta&t=R70-mM8BuAe11gTe5ioWFBGmuqZu-PLDJu4LKHSt8gk"
+          className="rounded mx-auto d-block"
+          alt="Logo Alkemy"
+        />
+        <div className="px-3">
+          <form>
+            <div className="d-flex justify-content-center align-items-center">
+              <div id="emailHelp" className="form-text fs-5">
+               Alkemy Heroes 
+              </div>
+            </div>
+            <div className="d-flex justify-content-center align-items-center"></div>
+            <div className="mb-3">
+              <label for="exampleInputEmail1" className="form-label mt-3">
+                Email address
+              </label>
+              <input
+                type="email"
+                className="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+              />
+              <div id="emailHelp" className="text-danger fw-bolder mt-2">
+                We'll never share your email with anyone else.
+              </div>
+            </div>
+            <div className="mb-3">
+              <label for="exampleInputPassword1" className="form-label ">
+                Password
+              </label>
+              <input
+                type="password"
+                className="form-control"
+                id="exampleInputPassword1"
+              />
+              <div id="emailHelp" className="text-danger fw-bolder mt-2">
+                We'll never share your email with anyone else.
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="btn btn-primary fw-light font-monospace mt-2"
+            >
+              Login
+            </button>
+          </form>
         </div>
-        <div className="row px-3">
-          
-          <label className="mb-1">
-            <h6 className="mb-0 text-sm">Password</h6>
-          </label>
-          <input type="password" name="password" placeholder="Enter password" />
-        </div>
-        <div className="row px-3 mb-4">
-          <div className="custom-control custom-checkbox custom-control-inline">
-            <input
-              id="chk1"
-              type="checkbox"
-              name="chk"
-              className="custom-control-input"
-            />
-            <label for="chk1" className="custom-control-label text-sm">
-              Remember me
-            </label>
-          </div>
-          <a href="#" className="ml-auto mb-0 text-sm">
-            Forgot Password?
-          </a>
-        </div>
-        <div className="row mb-3 px-3">
-          
-          <button type="submit" className="btn btn-blue text-center">
-            Login
-          </button>
-        </div>
-        <div className="row mb-4 px-3">
-          
-          <small className="font-weight-bold">
-            Don't have an account? <a className="text-danger ">Register</a>
-          </small>
-        </div>
+        <div className="card-body text-light mx-auto mt-5">Made with 💙 by Mansilla Agustin</div>
       </div>
     </div>
+    </div>
+    </>
   );
 }
 
