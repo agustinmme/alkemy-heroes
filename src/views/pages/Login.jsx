@@ -1,7 +1,7 @@
 import React from "react";
 import "./Login.css";
 import logo from "../../assets/logo-alkemy.png";
-import { Formik } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
 function App() {
   return (
@@ -35,20 +35,15 @@ function App() {
                   }
                   return errors;
                 }}
-                onSubmit={(values,{resetForm}) => {
+                onSubmit={(values, { resetForm }) => {
                   console.log("hola" + values.email);
                   resetForm();
                 }}
               >
                 {({
-                  handleSubmit,
-                  values,
-                  handleChange,
-                  handleBlur,
-                  errors,
-                  touched,
+                  errors
                 }) => (
-                  <form onSubmit={handleSubmit}>
+                  <Form className="form">
                     <div className="d-flex justify-content-center align-items-center">
                       <div id="emailHelp" className="form-text fs-5">
                         Alkemy Heroes
@@ -57,46 +52,46 @@ function App() {
                     <div className="d-flex justify-content-center align-items-center"></div>
                     <div className="mb-3">
                       <label className="form-label mt-3">Email address</label>
-                      <input
+                      <Field
                         type="email"
                         className="form-control"
                         id="email"
                         name="email"
                         placeholder="Correo electrónico"
-                        value={values.email}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
                       />
-                      {errors.email && touched.email && (
-                        <div
-                          id="emailError"
-                          className="text-danger fw-bolder mt-2"
-                        >
-                          {errors.email}
-                        </div>
-                      )}
+                      <ErrorMessage
+                        name="email"
+                        component={() => (
+                          <div
+                            id="emailError"
+                            className="text-danger fw-bolder mt-2"
+                          >
+                            {errors.email}
+                          </div>
+                        )}
+                      />
                     </div>
 
                     <div className="mb-3">
                       <label className="form-label ">Password</label>
-                      <input
+                      <Field
                         type="password"
                         className="form-control"
                         id="password"
                         name="password"
                         placeholder="Contraseña"
-                        value={values.password}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
                       />
-                      {errors.password && touched.password && (
-                        <div
-                          id="passwordError"
-                          className="text-danger fw-bolder mt-2"
-                        >
-                          {errors.password}
-                        </div>
-                      )}
+                      <ErrorMessage
+                        name="password"
+                        component={() => (
+                          <div
+                            id="passwordError"
+                            className="text-danger fw-bolder mt-2"
+                          >
+                            {errors.password}
+                          </div>
+                        )}
+                      />
                     </div>
 
                     <button
@@ -105,7 +100,7 @@ function App() {
                     >
                       Login
                     </button>
-                  </form>
+                  </Form>
                 )}
               </Formik>
             </div>
