@@ -12,9 +12,9 @@ function App() {
         <div className="d-flex justify-content-center container">
           <div className="card my-auto ">
           {erroAlert!==""?<div className={"card-header"}>
-              <p className="text-center text-danger fw-bolder my-auto">
+              <div className="alert alert-warning alert-dismissible fade show" role="alert">
                 {erroAlert}
-              </p>
+              </div>
             </div>:null}
             <div className="card-body">
               <img

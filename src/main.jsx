@@ -6,7 +6,7 @@ import Home from './views/Dashboard/Home/Home'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Home />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 )
