@@ -1,18 +1,23 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./Login.css";
 import logo from "../../assets/logo-alkemy.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import loginServices from "../../services/login";
+import { useDispatch } from "react-redux";
+import {login} from '../../actions/authAction'
+
 function App() {
   const [user, setUser] = useState({});
   const [erroAlert, setErroAlert] = useState("");
+  const dispatch = useDispatch();
+
   return (
     <>
       <div className="bg">
         <div className="d-flex justify-content-center container">
           <div className="card my-auto ">
-          {erroAlert!==""?<div className={"card-header"}>
-              <div className="alert alert-warning alert-dismissible fade show" role="alert">
+          {erroAlert!==""?<div className={"card-header alert-danger p-3 fs-5"}>
+              <div className="text-center" role="alert">
                 {erroAlert}
               </div>
             </div>:null}
@@ -24,7 +29,7 @@ function App() {
               />
               <div className="px-3">
                 <div id="emailHelp" className="text-center fs-5">
-                  Alkemy Heroes
+                Challenge Alkemy 
                 </div>
                 <Formik
                   initialValues={{
@@ -54,11 +59,19 @@ function App() {
                         email: values.email,
                         password: values.password,
                       });
-                      console.log("hola" + values.email);
                       setUser(user);
                       resetForm();
                       const { token } = user;
-                      window.localStorage.setItem("LoggedAlkemyChallenge",JSON.stringify(token))
+                      window.localStorage.setItem("LoggedAlkemyChallenge",JSON.stringify({
+                        email: values.email,
+                        password: values.password,
+                        token:token
+                      }))
+                      dispatch(login({
+                        email:values.email,
+                        token
+                      }));
+
                     } catch (error) {
                         setErroAlert(error.message);
                         setTimeout(()=>{
