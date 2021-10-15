@@ -3,13 +3,20 @@ import "./Login.css";
 import logo from "../../assets/logo-alkemy.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import loginServices from "../../services/login";
-import { useDispatch } from "react-redux";
-import {login} from '../../actions/authAction'
+import { Redirect } from "react-router-dom";
 
-function App() {
+function App({history}) {
   const [user, setUser] = useState({});
   const [erroAlert, setErroAlert] = useState("");
-  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    const loggedUserJSON = window.localStorage.getItem("LoggedAlkemyChallenge")
+    if(loggedUserJSON){
+      const user = JSON.parse(loggedUserJSON);
+      setUser(user);
+    }
+    
+  },[])
 
   return (
     <>
@@ -67,11 +74,7 @@ function App() {
                         password: values.password,
                         token:token
                       }))
-                      dispatch(login({
-                        email:values.email,
-                        token
-                      }));
-
+                      history.push(`/dash/home`);
                     } catch (error) {
                         setErroAlert(error.message);
                         setTimeout(()=>{
