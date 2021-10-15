@@ -1,27 +1,20 @@
-const estadoInicial = {
-    listado: [],
-    };
-  function reducerPersonas(state = estadoInicial, action) {
-      const nuevoState = JSON.parse(JSON.stringify(state));
-      switch (action.type) {
-        case 'ADD_PERSONA':
-          nuevoState.listado.push(action.payload);
-          return nuevoState;
-        case 'AGREGAR_LISTADO_PERSONA':
-          nuevoState.listado = action.listado;
-          return nuevoState;
-        case 'REMOVER_PERSONA':
-          nuevoState.listado = nuevoState.listado.filter((unElemento) => unElemento.persona_id !== action.payload);
-          return nuevoState;
-          case 'MODIFICAR_PERSONA':
-            const  index = nuevoState.listado.findIndex(
-              (obj) => obj.persona_id === action.payload[0].persona_id
-            );
-             nuevoState.listado[index] = action.payload[0];
-             return nuevoState;
-        default:
-          return state;
-      }
-    }
-  
-    export default reducerPersonas;
+import { types } from "../types/types";
+const initialState = {
+  email: "",
+  token: "",
+  logged: false,
+};
+function authReducer(state = initialState, action) {
+  let newState = JSON.parse(JSON.stringify(state));
+  switch (action.type) {
+    case types.login:
+      newState = action.payload;
+      return newState;
+    case types.logout:
+      return {};
+    default:
+      return state;
+  }
+}
+
+export default authReducer;
