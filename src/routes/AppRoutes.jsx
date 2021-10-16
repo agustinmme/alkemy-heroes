@@ -17,7 +17,7 @@ function AppRoutes() {
     if (loggedUserJSON) {
       const { email, token } = JSON.parse(loggedUserJSON);
       dispatch(login(email,token));
-      const values = await superhero.fetchGroupById([70,2]);
+      const values = await superhero.fetchGroupById([70,2,32]);
       dispatch(fetchMyHeroes(values));
     }
 
