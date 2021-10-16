@@ -8,6 +8,7 @@ import { login } from "../actions/authAction";
 import { fetchMyHeroes } from '../actions/superheroActions'
 import superhero from '../services/superhero'
 import { useDispatch, useSelector } from "react-redux";
+import Loader from '../components/Loader/Loader'
 function AppRoutes() {
   const { auth } = useSelector((state) => state);
   const [cargando, setCargando] = useState(true)
@@ -27,7 +28,7 @@ function AppRoutes() {
 
   if(cargando){
     return (
-      <div>cargando...</div>
+     <Loader/>
     )
   }
   return (
