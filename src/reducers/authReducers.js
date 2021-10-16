@@ -11,7 +11,7 @@ function authReducer(state = initialState, action) {
       newState = action.payload;
       return newState;
     case types.logout:
-      return {};
+      return initialState;
     default:
       return state;
   }
