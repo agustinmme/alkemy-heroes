@@ -3,35 +3,29 @@
 }
 body {
   background-color: #000000;
-  
 }
-.bg{
-  position: relative; 
+.bg {
+  position: relative;
   height: 100vh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('https://images.unsplash.com/photo-1593345216166-6a6cbf185ba0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80');
+  background-image: url("https://images.unsplash.com/photo-1593345216166-6a6cbf185ba0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80");
   background-size: cover;
-  
 }
-.img-logo{
-    height: 125px;
-    width:150px;
-    background-size: cover;
-}
-.bg::before {
-    content: "";
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    background-color: rgba(0,0,0,0.55);
-  }
 
-.card {
+.bg::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.55);
+}
+
+.login-card {
   width: 450px;
   border-radius: 20px;
   background: #fff;
@@ -52,10 +46,10 @@ body {
   box-shadow: none;
 }
 
-.text-danger{
+.text-danger {
   font-size: 12px;
 }
-.btn {
+.btn-login {
   height: 35px;
   width: 100%;
   background-color: #000;
@@ -64,7 +58,7 @@ body {
   border: none;
   font-size: 15px;
 }
-.btn:hover {
+.btn-login:hover {
   height: 35px;
   width: 100%;
   background-color: #80dbff;
@@ -74,10 +68,10 @@ body {
   font-size: 15px;
 }
 
-.footer{
+.footer {
   padding-top: 10px;
   padding-bottom: 0px;
-  position:fixed;
-  bottom:0;
-  width:100%;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }

@@ -1,10 +1,10 @@
-import React, { useState,useEffect } from "react";
+import React, { useState } from "react";
 import "./Login.css";
-import logo from "../../assets/logo-alkemy.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import loginServices from "../../services/login";
 import { useDispatch } from "react-redux";
-import {login} from '../../actions/authAction'
+import { login } from "../../actions/authAction";
+import Logo from "../../components/Logo/Logo";
 
 function App() {
   const [user, setUser] = useState({});
@@ -15,21 +15,19 @@ function App() {
     <>
       <div className="bg">
         <div className="d-flex justify-content-center container">
-          <div className="card my-auto ">
-          {erroAlert!==""?<div className={"card-header alert-danger p-3 fs-5"}>
-              <div className="text-center" role="alert">
-                {erroAlert}
+          <div className="card login-card my-auto ">
+            {erroAlert !== "" ? (
+              <div className={"card-header alert-danger p-3 fs-5"}>
+                <div className="text-center" role="alert">
+                  {erroAlert}
+                </div>
               </div>
-            </div>:null}
+            ) : null}
             <div className="card-body">
-              <img
-                src={logo}
-                className="img-logo rounded mx-auto d-block mt-3 "
-                alt="Logo Alkemy"
-              />
+              <Logo type={1} />
               <div className="px-3">
                 <div id="emailHelp" className="text-center fs-5">
-                Challenge Alkemy 
+                  Challenge Alkemy
                 </div>
                 <Formik
                   initialValues={{
@@ -62,21 +60,25 @@ function App() {
                       setUser(user);
                       resetForm();
                       const { token } = user;
-                      window.localStorage.setItem("LoggedAlkemyChallenge",JSON.stringify({
-                        email: values.email,
-                        password: values.password,
-                        token:token
-                      }))
-                      dispatch(login({
-                        email:values.email,
-                        token
-                      }));
-
+                      window.localStorage.setItem(
+                        "LoggedAlkemyChallenge",
+                        JSON.stringify({
+                          email: values.email,
+                          password: values.password,
+                          token: token,
+                        })
+                      );
+                      dispatch(
+                        login({
+                          email: values.email,
+                          token,
+                        })
+                      );
                     } catch (error) {
-                        setErroAlert(error.message);
-                        setTimeout(()=>{
-                            setErroAlert("");
-                        },4000);
+                      setErroAlert(error.message);
+                      setTimeout(() => {
+                        setErroAlert("");
+                      }, 4000);
                     }
                   }}
                 >
@@ -138,7 +140,9 @@ function App() {
 
                       <button
                         type="submit"
-                        className={"btn btn-primary fw-light font-monospace "}
+                        className={
+                          "btn btn-primary btn-login fw-light font-monospace "
+                        }
                       >
                         Login
                       </button>

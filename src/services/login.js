@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const apiUrl ="http://challenge-react.alkemy.org/"
+const baseUrl ="http://challenge-react.alkemy.org/"
 
 const login = async credentials=>{
-    const { data } = await axios.post(apiUrl,credentials)
+    const { data } = await axios.post(baseUrl,credentials)
     return data;
 }
 
