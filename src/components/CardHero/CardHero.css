@@ -9,7 +9,11 @@
   -webkit-box-shadow: 3px 5px 17px -4px #777777;
   box-shadow: 3px 5px 17px -4px #777777;
 }
-
+.img-max{
+  max-height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
 .actions button {
   background-color: #eee;
   color: #000;
