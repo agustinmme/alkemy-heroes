@@ -1,4 +1,5 @@
 import React from "react";
+import storage from "../../services/storage";
 import "./CardHero.css";
 function CardHero({ name, powerstats, id, img }) {
   const covertAndSorted = (data) => {
@@ -6,6 +7,7 @@ function CardHero({ name, powerstats, id, img }) {
     let sorted = entries.sort((b, a) => a[1] - b[1]);
     return sorted;
   };
+  
   return (
     <div className="col-md-3">
       <div className="card card-hero text-center">
@@ -40,7 +42,7 @@ function CardHero({ name, powerstats, id, img }) {
         </div>
         <div className="mt-4 actions p-1 d-flex">
           <button className="btn btn-dark text-uppercase m-1">details</button>
-          <button className="btn btn-danger text-uppercase m-1">remove</button>
+          <button className="btn btn-danger text-uppercase m-1" onClick={()=>{storage.deleteHero(id)}}>remove</button>
         </div>
       </div>
     </div>

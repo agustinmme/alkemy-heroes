@@ -1,21 +1,18 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Navbar from "../../../components/Navbar/Navbar";
 import CardHero from "../../../components/CardHero/CardHero";
 import "./Home.css";
+import Footer from "../../../components/Footer/Footer";
+import Loader from '../../../components/Loader/Loader'
 
-function Home() {
 
-  const myTeam = useSelector(state => state.superheroes);
 
-  const powerstats = {
-    intelligence: "100",
-    strength: "26",
-    speed: "27",
-    durability: "50",
-    power: "47",
-    combat: "100",
-  };
+function Home({ history }) {
+  const { superheroes } = useSelector((state) => state);
+
+  const dispatch = useDispatch();
+
 
 
   return (
@@ -58,18 +55,28 @@ function Home() {
         <div className="d-flex justify-content-between my-3">
           <h1>My heroes</h1>
           <div className="add">
-            <button className="btn btn-dark  my-auto text-uppercase ">
+            <button
+              className="btn btn-dark  my-auto text-uppercase "
+              onClick={() => {
+                history.push("/dash/search");
+              }}
+            >
               add Hero
             </button>
           </div>
         </div>
         <div className="row g-2">
-        {myTeam.map((hero, index) => (
-            <CardHero key={index} name={hero.name} powerstats={hero.powerstats} id={hero.id} img={hero.image["url"]}  />
-            ))}
-          
+          {superheroes.map((hero, index) => (
+            <CardHero
+              key={index}
+              name={hero.name}
+              powerstats={hero.powerstats}
+              id={hero.id}
+              img={hero.image["url"]}
+            />
+          ))}
         </div>
-        <p className="text-center p-5">Made with 💙 by Mansilla Agustin</p>
+        <Footer padding={true} />
       </div>
     </>
   );

@@ -5,11 +5,14 @@ import loginServices from "../../services/login";
 import { useDispatch } from "react-redux";
 import { login } from "../../actions/authAction";
 import Logo from "../../components/Logo/Logo";
+import Loader from '../../components/Loader/Loader'
+import Footer from "../../components/Footer/Footer";
 
-function App() {
+function App({history}) {
   const [user, setUser] = useState({});
   const [erroAlert, setErroAlert] = useState("");
   const dispatch = useDispatch();
+
 
   return (
     <>
@@ -74,6 +77,7 @@ function App() {
                           token,
                         })
                       );
+                      history.push("/dash")
                     } catch (error) {
                       setErroAlert(error.message);
                       setTimeout(() => {
@@ -152,9 +156,7 @@ function App() {
               </div>
             </div>
             <div className={"card-footer "}>
-              <p className="text-center my-auto">
-                Made with 💙 by Mansilla Agustin
-              </p>
+              <Footer padding={false}/>
             </div>
           </div>
         </div>

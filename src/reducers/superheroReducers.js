@@ -6,6 +6,8 @@ function superheroReducers(state = initialState, action) {
     case types.fetchMyHeroes:
       newState = action.payload;
       return newState;
+      case types.removeHeroes:
+        return initialState;
     default:
       return state;
   }
