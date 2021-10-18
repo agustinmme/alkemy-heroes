@@ -24,4 +24,24 @@ const fetchByName = async (name) => {
   return data;
 };
 
-export default { fetchById, fetchByName, fetchGroupById };
+
+const fetchAppearance = async (id) => {
+  const { data } = await axios.get(`${baseUrl}/${id}/appearance`);
+  return data;
+};
+
+const fetchWork = async (id) => {
+  const { data } = await axios.get(`${baseUrl}/${id}/work`);
+  return data;
+};
+
+const fetchBiography = async (id) => {
+  const { data } = await axios.get(`${baseUrl}/${id}/biography`);
+  return data;
+};
+
+const fetchImage= async (id) => {
+  const { data } = await axios.get(`${baseUrl}/${id}/image`);
+  return data;
+};
+export default { fetchById, fetchByName, fetchGroupById,fetchAppearance,fetchWork,fetchBiography,fetchImage };
