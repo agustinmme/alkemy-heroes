@@ -4,7 +4,7 @@ export const types = {
 
     fetchMyHeroes: "FETCH_MY_HEROES",
     addHeroes: "ADD_HEROES",
-    deleteHeroes: "DELETE_HEROES",
+    deleteHero: "DELETE_HEROES",
     removeHeroes: "REMOVE_HEROES",
 
 }

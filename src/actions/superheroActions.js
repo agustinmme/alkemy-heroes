@@ -13,16 +13,16 @@ export const removeHeroes = () => {
     };
 };
 
-export const addHeroes = (id) => {
+export const addHeroes = (hero) => {
   return {
     type: types.addHeroes,
-    payload: id,
+    payload: hero,
   };
 };
 
 export const deleteHero = (id) => {
   return {
-    type: types.deleteHeroes,
+    type: types.deleteHero,
     payload: id,
   };
 };
