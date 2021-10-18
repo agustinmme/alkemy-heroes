@@ -1,19 +1,44 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import storage from "../../services/storage";
 import { addHeroes } from "../../actions/superheroActions";
 import superhero from "../../services/superhero";
+import helper from "../../helper/helperSuperheroes";
 
 function CardSearch({ name, img, id }) {
   const dispatch = useDispatch();
-  const handlerAddHero =async () => {
-    storage.addHero(id);
+  const [heroCap, setHeroCap] = useState(false);
+  const { superheroes } = useSelector((state) => state);
+  const handlerAddHero = async () => {
     try {
       const data = await superhero.fetchById(id);
       const { name, powerstats, appearance, biography, image } = data;
-      dispatch(
-        addHeroes({ id, powerstats, appearance, biography, name, image })
-      );
+      const heroAux = {
+        id,
+        powerstats,
+        appearance,
+        alignment: biography.alignment,
+        name,
+        image,
+      };
+      if (helper.checkNotRepeat(superheroes, heroAux)) {
+        if (helper.balanceHeroes(superheroes, heroAux)) {
+          storage.addHero(id);
+          dispatch(addHeroes(heroAux));
+        } else {
+          setHeroCap(
+            `No puedes agregar mas Heroes a tu equipo de tipo ${heroAux.alignment}`
+          );
+          setTimeout(() => {
+            setHeroCap("");
+          }, 3000);
+        }
+      } else {
+        setHeroCap(`No puedes agregar de nuevo a ${heroAux.name}`);
+        setTimeout(() => {
+          setHeroCap("");
+        }, 3000);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -27,8 +52,11 @@ function CardSearch({ name, img, id }) {
             <p className="fw-bold text-primary m-3">{name}</p>
           </span>
         </div>
-        <button className="btn btn-primary m-3" onClick={handlerAddHero}>
-          AGREGAR
+        <button
+          className={heroCap ? "btn btn-warning m-3" : "btn btn-primary m-3"}
+          onClick={handlerAddHero}
+        >
+          {heroCap ? heroCap : "AGREGAR"}
         </button>
       </div>
     </div>
