@@ -23,7 +23,7 @@ const balanceHeroes = (Allheroes,{ alignment }) => {
 };
 
 const checkNotRepeat = (Allheroes,{ name }) => {
-  //Se podria cambiar a un includes el === para denegar agregar variantes del mismo heroe Ej: Batman,Batman 2 
+  //Se podria cambiar a un includes el === para denegar agregar variantes del mismo heroe Ej: Batman,Batman 2
   return !(Allheroes.filter(x=>x.name===name).length > 0)
 };
 
