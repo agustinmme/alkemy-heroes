@@ -6,7 +6,7 @@ export const PublicRouter = ({ log, component: Component, ...rest }) => {
     <Route
       {...rest}
       component={(props) =>
-        log ? <Redirect to="/dash/home" /> : <Component {...props} />
+        log ? <Redirect to="/dash" /> : <Component {...props} />
       }
     />
   );

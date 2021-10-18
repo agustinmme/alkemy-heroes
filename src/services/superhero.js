@@ -13,9 +13,8 @@ const fetchGroupById = async (arrayIds) => {
   let newArray = [];
   for (let index = 0; index < arrayIds.length; index++) {
     const { data } = await axios.get(`${baseUrl}/${arrayIds[index]}`);
-
     const { id,name, powerstats, appearance, biography, image } = data;
-    newArray.push({ id, powerstats, appearance, biography,name, image });
+    newArray.push({ id, powerstats, appearance, alignment:biography.alignment,name, image });
   }
   return newArray;
 };

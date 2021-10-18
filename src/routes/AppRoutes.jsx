@@ -1,40 +1,39 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Redirect, Switch } from "react-router-dom";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRouter } from "./PublicRouter";
 import Login from "../views/pages/Login";
-import Home from "../views/Dashboard/Home/Home";
 import { login } from "../actions/authAction";
-import { fetchMyHeroes } from '../actions/superheroActions'
-import superhero from '../services/superhero'
+import { fetchMyHeroes } from "../actions/superheroActions";
+import superhero from "../services/superhero";
 import { useDispatch, useSelector } from "react-redux";
+import DashboardRoutes from "./DashboardRoutes";
+import storage from "../services/storage";
 function AppRoutes() {
   const { auth } = useSelector((state) => state);
-  const [cargando, setCargando] = useState(true)
   const dispatch = useDispatch();
-  useEffect(async() => {
+  useEffect(async () => {
     const loggedUserJSON = window.localStorage.getItem("LoggedAlkemyChallenge");
     if (loggedUserJSON) {
       const { email, token } = JSON.parse(loggedUserJSON);
-      dispatch(login(email,token));
-      const values = await superhero.fetchGroupById([70,2,32]);
-      dispatch(fetchMyHeroes(values));
+      dispatch(login(email, token));
+      const heroes = storage.getHereos();
+      if (heroes[0] !== undefined) {
+        const newArray = await superhero.fetchGroupById(heroes);
+        dispatch(fetchMyHeroes(newArray));
+      }
     }
-
-    
-    setCargando(false);
   }, []);
 
-  if(cargando){
-    return (
-      <div>cargando...</div>
-    )
-  }
   return (
     <Router>
       <Switch>
         <PublicRouter log={auth.logged} path="/login" component={Login} />
-        <PrivateRoute log={auth.logged} path="/dash/home" component={Home} />
+        <PrivateRoute
+          log={auth.logged}
+          path="/dash"
+          component={DashboardRoutes}
+        />
         <Redirect to="/login" />
       </Switch>
     </Router>

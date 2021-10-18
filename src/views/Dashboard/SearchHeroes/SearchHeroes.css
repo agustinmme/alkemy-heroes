@@ -29,20 +29,45 @@
     filter: "none"
 
   }
-  .skill-block {
-    width: 16.6%
+.search {
+    position: relative;
+    box-shadow: 0 0 40px rgba(51, 51, 51, .1);
+    
 }
-.add button {
-    background-color: #f8f9fa;
-    color: #000;
-    width: 100%;
-    border-color: #f8f9fa;
-    font-size: 20px;
+
+.search input {
+    height: 60px;
+    text-indent: 25px;
+    border: 2px solid #d6d4d4;
 }
-.board {
-  background: #f2f5f8 !important;
-  color: #000 !important;
+
+.search input:focus {
+    box-shadow: none;
+    border: 2px solid #80dbff
 }
-.over-card{
-  margin-top: -11vh;
+
+.search-icon {
+    position: absolute;
+    top: 20px;
+    left: 16px;
+}
+
+.button-inside {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 50px;
+    width: 110px;
+    background: #80dbff;
+}
+.button-inside-error {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  height: 50px;
+  width: 110px;
+  background: #ff8080;
+}
+.board-max{
+    max-height: 12vh;
 }
