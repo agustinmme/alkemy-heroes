@@ -65,7 +65,6 @@ function App({ history }) {
                         "LoggedAlkemyChallenge",
                         JSON.stringify({
                           email: values.email,
-                          password: values.password,
                           token: token,
                         })
                       );
