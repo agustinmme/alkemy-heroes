@@ -22,7 +22,7 @@ const deleteHero = (id) => {
   newArray = myHeroesTeam.filter((element) => element !== "" + id);
   let heroesArrayJSON = JSON.stringify(newArray);
   window.localStorage.setItem("storageAlkemyChallenge", heroesArrayJSON);
-  //Retorna el id y llamas algun endpoint para recuperar el Name.
+  //Emular retorno endpoint.
   return `Has borrado con exito a ${id}`;
 };
 
