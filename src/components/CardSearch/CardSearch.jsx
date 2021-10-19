@@ -4,7 +4,9 @@ import { addHeroes } from "../../actions/superheroActions";
 import storage from "../../services/storage";
 import superhero from "../../services/superhero";
 import helper from "../../helper/helperSuperheroes";
+import { useHistory } from "react-router";
 function CardSearch({ name, img, id }) {
+  const history= useHistory();
   const dispatch = useDispatch();
   const [heroCap, setHeroCap] = useState(false);
   const { superheroes } = useSelector((state) => state);
@@ -25,6 +27,7 @@ function CardSearch({ name, img, id }) {
         if (helper.balanceHeroes(superheroes, heroAux)) {
           storage.addHero(id);
           dispatch(addHeroes(heroAux));
+          history.push("/dash")
         } else {
           setHeroCap(
             `No puedes agregar mas Heroes a tu equipo de tipo ${heroAux.alignment}`

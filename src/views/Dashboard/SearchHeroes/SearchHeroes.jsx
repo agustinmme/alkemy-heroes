@@ -41,7 +41,6 @@ function SearchHeroes() {
                   values.searchHero
                 );
                 setSearchHeroes(results);
-                resetForm();
                 setLoading(false);
               } catch (error) {
                 setErrorAlert(error.message);
@@ -96,23 +95,23 @@ function SearchHeroes() {
 
         {loading ? <Loader type={1} /> : null}
 
-        {searchHeroes !== undefined ? (
-          searchHeroes.map((hero, index) => (
+
+         {searchHeroes && searchHeroes.map((hero) => (
             <CardSearch
               key={hero.id}
               name={hero.name}
               img={hero.image["url"]}
               id={hero.id}
             />
-          ))
-        ) : (
-          <CardMessage
+          ))}
+ 
+          {!searchHeroes && !loading ? <CardMessage
             type={"warning"}
             title={"No hay Heroes que coincidan con tu búsqueda."}
             text={"Revisá la ortografía de la palabra."}
             text2={"Utilizá palabras más genéricas o menos palabras."}
           />
-        )}
+        :null}
 
         {errorAlert !== "" ? (
           <CardMessage type={"danger"} title={errorAlert} />
@@ -125,7 +124,7 @@ function SearchHeroes() {
           />
         ) : null}
 
-        <Footer padding={true} />
+        {loading ? null : <Footer padding={true} />}
       </div>
     </>
   );
