@@ -9,8 +9,8 @@ export const fetchMyHeroes = (team) => {
 
 export const removeHeroes = () => {
   return {
-      type: types.removeHeroes,
-    };
+    type: types.removeHeroes,
+  };
 };
 
 export const addHeroes = (hero) => {

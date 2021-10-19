@@ -1,12 +1,12 @@
 import React, { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import Footer from "../../../components/Footer/Footer";
 import Navbar from "../../../components/Navbar/Navbar";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import "./SearchHeroes.css";
 import CardMessage from "../../../components/CardMessage/CardMessage";
 import superhero from "../../../services/superhero";
 import CardSearch from "../../../components/CardSearch/CardSearch";
-import Loader from '../../../components/Loader/Loader'
+import Loader from "../../../components/Loader/Loader";
+import "./SearchHeroes.css";
 function SearchHeroes() {
   const [loading, setLoading] = useState(false);
   const [searchHeroes, setSearchHeroes] = useState([]);
@@ -36,13 +36,13 @@ function SearchHeroes() {
             onSubmit={async (values, { resetForm }) => {
               try {
                 setHelp(false);
-                setLoading(true)
+                setLoading(true);
                 const { results } = await superhero.fetchByName(
                   values.searchHero
                 );
                 setSearchHeroes(results);
                 resetForm();
-                setLoading(false)
+                setLoading(false);
               } catch (error) {
                 setErrorAlert(error.message);
                 setTimeout(() => {
@@ -94,18 +94,25 @@ function SearchHeroes() {
           </Formik>
         </div>
 
-        {  loading? <Loader type={1} />:null}
+        {loading ? <Loader type={1} /> : null}
 
-        {
-         searchHeroes!== undefined? searchHeroes.map((hero, index) => (
-            <CardSearch key={hero.id} name={hero.name} img={hero.image["url"] } id={hero.id}/>
-          )):<CardMessage
-          type={"warning"}
-          title={"No hay Heroes que coincidan con tu búsqueda."}
-          text={"Revisá la ortografía de la palabra."}
-          text2={"Utilizá palabras más genéricas o menos palabras."}
-        />
-        }
+        {searchHeroes !== undefined ? (
+          searchHeroes.map((hero, index) => (
+            <CardSearch
+              key={hero.id}
+              name={hero.name}
+              img={hero.image["url"]}
+              id={hero.id}
+            />
+          ))
+        ) : (
+          <CardMessage
+            type={"warning"}
+            title={"No hay Heroes que coincidan con tu búsqueda."}
+            text={"Revisá la ortografía de la palabra."}
+            text2={"Utilizá palabras más genéricas o menos palabras."}
+          />
+        )}
 
         {errorAlert !== "" ? (
           <CardMessage type={"danger"} title={errorAlert} />

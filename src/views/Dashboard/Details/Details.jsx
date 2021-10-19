@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
 import Navbar from "../../../components/Navbar/Navbar";
 import Footer from "../../../components/Footer/Footer";
@@ -6,7 +7,7 @@ import DetailsList from "../../../components/DetailsList/DetailsList";
 import superhero from "../../../services/superhero";
 import Loader from "../../../components/Loader/Loader";
 import "./Details.css";
-import { useSelector } from "react-redux";
+
 function Details({}) {
   const history = useHistory();
   const { id } = useParams();
@@ -41,7 +42,7 @@ function Details({}) {
       console.log(error);
     }
   }, []);
-  
+
   const covertAndSorted = (data) => {
     let entries = Object.entries(data);
     let sorted = entries.sort((b, a) => a[1] - b[1]);
@@ -60,11 +61,18 @@ function Details({}) {
         </div>
       </div>
       <div className="container mt-5 mb-5">
-        {/* Agrego display none en movile porque no puedo salvar esta funcion... Igualmente la informacion se encuentra antes de ingresar.*/ }
+        {/* Agrego display none en movile porque no puedo salvar esta funcion... Igualmente la informacion se encuentra antes de ingresar.*/}
         <div className="p-3 card  over-card bg-white rounded display-none d-none d-md-block">
           <div className="d-flex flex-row board">
             {covertAndSorted(detailsHero.powerstats).map((stats, index) => (
-              <div key={index} className={index===0?"p-4 text-center skill-block rounded text-warning":"p-4 text-center skill-block rounded "}>
+              <div
+                key={index}
+                className={
+                  index === 0
+                    ? "p-4 text-center skill-block rounded text-warning text-capitalize"
+                    : "p-4 text-center skill-block rounded text-capitalize"
+                }
+              >
                 <h6> {stats[0]}</h6>
                 <h4> {stats[1]}</h4>
               </div>

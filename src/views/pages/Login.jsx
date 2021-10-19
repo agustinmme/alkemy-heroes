@@ -1,18 +1,16 @@
 import React, { useState } from "react";
-import "./Login.css";
+
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import loginServices from "../../services/login";
 import { useDispatch } from "react-redux";
 import { login } from "../../actions/authAction";
 import Logo from "../../components/Logo/Logo";
-import Loader from '../../components/Loader/Loader'
+import loginServices from "../../services/login";
 import Footer from "../../components/Footer/Footer";
-
-function App({history}) {
+import "./Login.css";
+function App({ history }) {
   const [user, setUser] = useState({});
   const [erroAlert, setErroAlert] = useState("");
   const dispatch = useDispatch();
-
 
   return (
     <>
@@ -77,7 +75,7 @@ function App({history}) {
                           token,
                         })
                       );
-                      history.push("/dash")
+                      history.push("/dash");
                     } catch (error) {
                       setErroAlert(error.message);
                       setTimeout(() => {
@@ -156,7 +154,7 @@ function App({history}) {
               </div>
             </div>
             <div className={"card-footer "}>
-              <Footer padding={false}/>
+              <Footer padding={false} />
             </div>
           </div>
         </div>

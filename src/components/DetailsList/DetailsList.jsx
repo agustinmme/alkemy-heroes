@@ -1,8 +1,8 @@
 import React from "react";
 
-function DetailsList({name,eyeColor,hairColor,weight,height,workplace}) {
+function DetailsList({ name, eyeColor, hairColor, weight, height, workplace }) {
   return (
-      //Se podria mapear y renderizar condicionalmente con el index para intercalar los estilos.
+    //Se podria mapear y renderizar condicionalmente con el index para intercalar los estilos.
     <div className="col">
       <ul className="list-group">
         <li className="list-group-item list-group-item-primary p-4">
@@ -12,17 +12,17 @@ function DetailsList({name,eyeColor,hairColor,weight,height,workplace}) {
           Eye color: {eyeColor}
         </li>
         <li className="list-group-item list-group-item-primary p-4">
-        Hair color: {hairColor}
+          Hair color: {hairColor}
         </li>
         <li className="list-group-item list-group-item-secondary p-4">
-        Weight: {weight}
+          Weight: {weight}
         </li>
         {/*  algunso endpoint no tiene mts ni kg. */}
         <li className="list-group-item list-group-item-primary p-4">
-        Height: {((parseInt(height)/100)) || "Not Found"}
+          Height: {parseInt(height) / 100 || "Not Found"}
         </li>
         <li className="list-group-item list-group-item-secondary p-4">
-        Workplace: {workplace}
+          Workplace: {workplace}
         </li>
       </ul>
     </div>

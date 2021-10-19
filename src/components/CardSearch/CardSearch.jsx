@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import storage from "../../services/storage";
 import { addHeroes } from "../../actions/superheroActions";
+import storage from "../../services/storage";
 import superhero from "../../services/superhero";
 import helper from "../../helper/helperSuperheroes";
-
 function CardSearch({ name, img, id }) {
   const dispatch = useDispatch();
   const [heroCap, setHeroCap] = useState(false);
   const { superheroes } = useSelector((state) => state);
+
   const handlerAddHero = async () => {
     try {
       const data = await superhero.fetchById(id);
@@ -40,7 +40,10 @@ function CardSearch({ name, img, id }) {
         }, 3000);
       }
     } catch (error) {
-      console.log(error);
+      setHeroCap(`${error.message}`);
+      setTimeout(() => {
+        setHeroCap("");
+      }, 3000);
     }
   };
   return (

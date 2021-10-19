@@ -5,6 +5,7 @@ import CardHero from "../../../components/CardHero/CardHero";
 import "./Home.css";
 import Footer from "../../../components/Footer/Footer";
 import PowerStatsTeam from "../../../components/PowerStatsTeam/PowerStatsTeam";
+import CardMessage from "../../../components/CardMessage/CardMessage";
 
 
 
@@ -44,6 +45,12 @@ function Home({ history }) {
               img={hero.image["url"]}
             />
           ))}
+             {superheroes.length === 0 ? (
+          <CardMessage
+            type={"info"}
+            title={"Hola 👋, busca a tus heroes en ADD HERO"}
+          />
+        ) : null}
         </div>
         <Footer padding={true} />
       </div>

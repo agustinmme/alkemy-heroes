@@ -1,12 +1,16 @@
-import React, { } from "react";
-import { BrowserRouter as Router,Route, Switch,useRouteMatch } from "react-router-dom";
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useRouteMatch,
+} from "react-router-dom";
 
 import Home from "../views/Dashboard/Home/Home";
 import SuperHeroes from "../views/Dashboard/SearchHeroes/SearchHeroes";
 import Details from "../views/Dashboard/Details/Details";
 function DashboardRoutes() {
-    let { path } = useRouteMatch();
-
+  let { path } = useRouteMatch();
 
   return (
     <Router>

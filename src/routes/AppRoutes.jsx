@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Redirect, Switch } from "react-router-dom";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRouter } from "./PublicRouter";
-import Login from "../views/pages/Login";
 import { login } from "../actions/authAction";
 import { fetchMyHeroes } from "../actions/superheroActions";
-import superhero from "../services/superhero";
 import { useDispatch, useSelector } from "react-redux";
+import Login from "../views/pages/Login";
 import DashboardRoutes from "./DashboardRoutes";
+import superhero from "../services/superhero";
 import storage from "../services/storage";
 function AppRoutes() {
   const { auth } = useSelector((state) => state);

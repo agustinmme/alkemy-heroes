@@ -6,16 +6,16 @@ import storage from "../../services/storage";
 import "./CardHero.css";
 function CardHero({ name, powerstats, id, img }) {
   const history = useHistory();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const covertAndSorted = (data) => {
     let entries = Object.entries(data);
     let sorted = entries.sort((b, a) => a[1] - b[1]);
     return sorted;
   };
-  const deleteThisHero = ()=>{
+  const deleteThisHero = () => {
     storage.deleteHero(id);
-    dispatch(deleteHero(""+id));
-  }
+    dispatch(deleteHero("" + id));
+  };
   return (
     <div className="col-md-3">
       <div className="card card-hero text-center">
@@ -49,8 +49,20 @@ function CardHero({ name, powerstats, id, img }) {
           })}
         </div>
         <div className="mt-4 actions p-1 d-flex">
-          <button className="btn btn-dark text-uppercase m-1" onClick={()=>{history.push(`/dash/details/${id}`)}}>details</button>
-          <button className="btn btn-danger text-uppercase m-1" onClick={deleteThisHero}>remove</button>
+          <button
+            className="btn btn-dark text-uppercase m-1"
+            onClick={() => {
+              history.push(`/dash/details/${id}`);
+            }}
+          >
+            details
+          </button>
+          <button
+            className="btn btn-danger text-uppercase m-1"
+            onClick={deleteThisHero}
+          >
+            remove
+          </button>
         </div>
       </div>
     </div>

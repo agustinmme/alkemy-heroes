@@ -13,8 +13,15 @@ const fetchGroupById = async (arrayIds) => {
   let newArray = [];
   for (let index = 0; index < arrayIds.length; index++) {
     const { data } = await axios.get(`${baseUrl}/${arrayIds[index]}`);
-    const { id,name, powerstats, appearance, biography, image } = data;
-    newArray.push({ id, powerstats, appearance, alignment:biography.alignment,name, image });
+    const { id, name, powerstats, appearance, biography, image } = data;
+    newArray.push({
+      id,
+      powerstats,
+      appearance,
+      alignment: biography.alignment,
+      name,
+      image,
+    });
   }
   return newArray;
 };
@@ -23,7 +30,6 @@ const fetchByName = async (name) => {
   const { data } = await axios.get(`${baseUrl}/search/${name}`);
   return data;
 };
-
 
 const fetchAppearance = async (id) => {
   const { data } = await axios.get(`${baseUrl}/${id}/appearance`);
@@ -40,8 +46,16 @@ const fetchBiography = async (id) => {
   return data;
 };
 
-const fetchImage= async (id) => {
+const fetchImage = async (id) => {
   const { data } = await axios.get(`${baseUrl}/${id}/image`);
   return data;
 };
-export default { fetchById, fetchByName, fetchGroupById,fetchAppearance,fetchWork,fetchBiography,fetchImage };
+export default {
+  fetchById,
+  fetchByName,
+  fetchGroupById,
+  fetchAppearance,
+  fetchWork,
+  fetchBiography,
+  fetchImage,
+};
