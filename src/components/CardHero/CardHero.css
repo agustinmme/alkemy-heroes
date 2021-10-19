@@ -1,0 +1,45 @@
+.card-hero {
+  border: none;
+  border-radius: 10px;
+  transition: all 1s;
+  cursor: pointer;
+}
+
+.card-hero:hover {
+  -webkit-box-shadow: 3px 5px 17px -4px #777777;
+  box-shadow: 3px 5px 17px -4px #777777;
+}
+.img-max{
+  max-height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+.actions button {
+  background-color: #eee;
+  color: #000;
+  width: 100%;
+  border-color: #eee;
+  font-size: 13px;
+}
+
+.stats {
+  background: #f2f5f8 !important;
+  color: #000 !important;
+  width: 28%;
+}
+.stats-power {
+  color: rgb(255, 255, 255) !important;
+  width: 28%;
+  background: linear-gradient(45deg, #00bcdd 0%, #ff00ff 100%);
+}
+.number {
+  font-weight: 500;
+}
+.stats-title {
+  font-size: 10px;
+  color: #a1aab9;
+}
+.stats-title-power {
+  font-size: 10px;
+  color: #ffffff;
+}

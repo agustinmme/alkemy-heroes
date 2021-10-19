@@ -1,0 +1,78 @@
+.container {
+    height: 100vh;
+  }
+  body {
+    background-color: #f8f9fa;
+    
+  }
+  .banner{
+    max-height: 32em;
+    height: 28vh;
+    width: 100%;
+    background-image: url('https://images.unsplash.com/photo-1593345216166-6a6cbf185ba0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80');
+    display: flex;
+    position: relative; 
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    filter: blur(0.3px) brightness(0.5) contrast(1.2);
+    overflow: hidden;
+  }
+
+  .title {
+    max-width: 16em;
+    margin-top: -3vh;
+    font-size: 12vh;
+    font-weight: bold;
+    line-height: .9;
+    color: floralwhite;
+    filter: "none"
+
+  }
+  .skill-block {
+    width: 16.6%
+}
+.add button {
+    background-color: #f8f9fa;
+    color: #000;
+    width: 100%;
+    border-color: #f8f9fa;
+    font-size: 20px;
+}
+.board {
+  background: #f2f5f8 !important;
+  color: #000 !important;
+}
+.over-card{
+  margin-top: -11vh;
+}
+
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .over-card{
+    margin-top: -8vh;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .title {
+    max-width: 24em;
+    font-size: 18vh;
+  }
+  
+}
+
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .title {
+    max-width: 12em;
+    font-size: 6vh;
+  }
+  h6{
+    font-size: 2vh;
+  }
+  h4{
+    font-size: 3vh;
+  }
+
+}

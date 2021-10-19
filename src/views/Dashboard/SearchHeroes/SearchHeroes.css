@@ -1,0 +1,74 @@
+.container {
+    height: 100vh;
+  }
+  body {
+    background-color: #f8f9fa;
+    
+  }
+
+.search {
+    position: relative;
+    box-shadow: 0 0 40px rgba(51, 51, 51, .1);
+    
+}
+
+.search input {
+    height: 60px;
+    text-indent: 25px;
+    border: 2px solid #d6d4d4;
+}
+
+.search input:focus {
+    box-shadow: none;
+    border: 2px solid #80dbff
+}
+
+.search-icon {
+    position: absolute;
+    top: 20px;
+    left: 16px;
+}
+
+.button-inside {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 50px;
+    width: 110px;
+    background: #80dbff;
+}
+.button-inside-error {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  height: 50px;
+  width: 110px;
+  background: #ff8080;
+}
+.board-max{
+    max-height: 12vh;
+}
+
+
+
+/* Lo dejo sin button porque en cell o tablet te aporta un send button en el teclado y auto el espacio del input */
+@media (min-width: 320px) and (max-width: 480px) {
+  .button-inside {
+    display: none;
+
+}
+.button-inside-error {
+display: none;
+
+}
+img{
+width: 40%;
+}
+.btn-primary{
+  font-size: 8px;
+}
+.search{
+  margin-top: -8px;
+
+}
+}
