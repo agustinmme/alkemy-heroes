@@ -27,4 +27,35 @@ const checkNotRepeat = (Allheroes,{ name }) => {
   return !(Allheroes.filter(x=>x.name===name).length > 0)
 };
 
-export default { balanceHeroes,checkNotRepeat };
+const convertToPowerstats = (superheroes) => {
+  const newArray = new Array(6).fill(0);
+  for (let index = 0; index < superheroes.length; index++) {
+    newArray[0]+=parseInt(superheroes[index].powerstats.intelligence);
+    newArray[1]+=parseInt(superheroes[index].powerstats.strength);
+    newArray[2]+=parseInt(superheroes[index].powerstats.speed);
+    newArray[3]+=parseInt(superheroes[index].powerstats.durability);
+    newArray[4]+=parseInt(superheroes[index].powerstats.power);
+    newArray[5]+=parseInt(superheroes[index].powerstats.combat);
+  }
+  const max = Math.max(...newArray);
+  const STATPOWER = { 
+    0:"Intelligence",
+    1:"Strength",
+    2:"Speed",
+    3:"Durability",
+    4:"Power",
+    5:"Combat"
+  }
+  return {name:STATPOWER[newArray.indexOf(max)],value:(max/superheroes.length) || 0};
+};
+
+const convertToHyW = (superheroes) => {
+  const newArray = new Array(2).fill(0);
+  for (let index = 0; index < superheroes.length; index++) {
+    //Fixeo con 0 porque algunso endpoint no tiene mts ni kg.
+    newArray[0]+=parseInt(superheroes[index].appearance.weight[1]) || 0;
+    newArray[1]+=parseInt(superheroes[index].appearance.height[1]) || 0;
+  }
+  return {"height":(newArray[1]/superheroes.length/100),"weight":(newArray[0]/superheroes.length)};
+};
+export default { balanceHeroes,checkNotRepeat,convertToPowerstats,convertToHyW };

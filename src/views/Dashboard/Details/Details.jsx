@@ -41,7 +41,7 @@ function Details({}) {
       console.log(error);
     }
   }, []);
-
+  
   const covertAndSorted = (data) => {
     let entries = Object.entries(data);
     let sorted = entries.sort((b, a) => a[1] - b[1]);
@@ -60,7 +60,8 @@ function Details({}) {
         </div>
       </div>
       <div className="container mt-5 mb-5">
-        <div className="p-3 card  over-card bg-white rounded">
+        {/* Agrego display none en movile porque no puedo salvar esta funcion... Igualmente la informacion se encuentra antes de ingresar.*/ }
+        <div className="p-3 card  over-card bg-white rounded display-none d-none d-md-block">
           <div className="d-flex flex-row board">
             {covertAndSorted(detailsHero.powerstats).map((stats, index) => (
               <div key={index} className={index===0?"p-4 text-center skill-block rounded text-warning":"p-4 text-center skill-block rounded "}>
@@ -79,7 +80,7 @@ function Details({}) {
                 history.push("/dash/");
               }}
             >
-              Volver
+              back
             </button>
           </div>
         </div>

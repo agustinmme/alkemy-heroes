@@ -17,8 +17,9 @@ function DetailsList({name,eyeColor,hairColor,weight,height,workplace}) {
         <li className="list-group-item list-group-item-secondary p-4">
         Weight: {weight}
         </li>
+        {/*  algunso endpoint no tiene mts ni kg. */}
         <li className="list-group-item list-group-item-primary p-4">
-        Height: {(parseInt(height)/100)} 
+        Height: {((parseInt(height)/100)) || "Not Found"}
         </li>
         <li className="list-group-item list-group-item-secondary p-4">
         Workplace: {workplace}

@@ -46,3 +46,33 @@
 .over-card{
   margin-top: -11vh;
 }
+
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .over-card{
+    margin-top: -8vh;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .title {
+    max-width: 24em;
+    font-size: 18vh;
+  }
+  
+}
+
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .title {
+    max-width: 12em;
+    font-size: 6vh;
+  }
+  h6{
+    font-size: 2vh;
+  }
+  h4{
+    font-size: 3vh;
+  }
+
+}
