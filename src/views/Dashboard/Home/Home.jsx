@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { useSelector } from "react-redux";
 import Navbar from "../../../components/Navbar/Navbar";
 import CardHero from "../../../components/CardHero/CardHero";
@@ -11,7 +11,13 @@ import CardMessage from "../../../components/CardMessage/CardMessage";
 
 function Home({ history }) {
   const { superheroes } = useSelector((state) => state);
-
+  useEffect(() => {
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+      })
+  }, [])
   return (
     <>
       <Navbar />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import Footer from "../../../components/Footer/Footer";
 import Navbar from "../../../components/Navbar/Navbar";
@@ -12,6 +12,13 @@ function SearchHeroes() {
   const [searchHeroes, setSearchHeroes] = useState([]);
   const [help, setHelp] = useState(true);
   const [errorAlert, setErrorAlert] = useState("");
+  useEffect(() => {
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+      })
+  }, [])
   return (
     <>
       <Navbar />
