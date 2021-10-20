@@ -61,7 +61,6 @@ function Details({}) {
         </div>
       </div>
       <div className="container mt-5 mb-5">
-        {/* Agrego display none en movile porque no puedo salvar esta funcion... Igualmente la informacion se encuentra antes de ingresar.*/}
         <div className="p-3 card  over-card bg-white rounded display-none d-none d-md-block">
           <div className="d-flex flex-row board">
             {covertAndSorted(detailsHero.powerstats).map((stats, index) => (
@@ -79,6 +78,7 @@ function Details({}) {
             ))}
           </div>
         </div>
+        
         <div className="d-flex justify-content-between my-3">
           <h1>Details</h1>
           <div className="add">
@@ -111,6 +111,23 @@ function Details({}) {
             weight={detailsHero.appearance["weight"]}
             workplace={detailsHero.work["base"]}
           />
+        </div>
+        {/* Ajuste mobile */}
+        <div className=" d-sm-flex d-md-none">
+          <ul className="list-group">
+            {covertAndSorted(detailsHero.powerstats).map((stats, index) => (
+              <li
+                key={index}
+                className={
+                  index % 2 === 0
+                    ? "list-group-item list-group-item-primary p-4 text-capitilize"
+                    : "list-group-item list-group-item-secondary p-4 text-capitilize"
+                }
+              >
+                 {stats[0]}: {stats[1]}
+              </li>
+            ))}
+          </ul>
         </div>
         <Footer padding={true} />
       </div>
