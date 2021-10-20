@@ -26,7 +26,10 @@ function CardSearch({ name, img, id }) {
       if (helper.checkNotRepeat(superheroes, heroAux)) {
         if (helper.balanceHeroes(superheroes, heroAux)) {
           storage.addHero(id);
-          dispatch(addHeroes(heroAux));
+          setTimeout(() => {
+            dispatch(addHeroes(heroAux));
+          }, 1000);
+          
           history.push("/dash")
         } else {
           setHeroCap(
