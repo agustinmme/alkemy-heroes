@@ -18,7 +18,7 @@ function AppRoutes() {
       const { email, token } = JSON.parse(loggedUserJSON);
       dispatch(login(email, token));
       const heroes = storage.getHereos();
-      if (heroes[0] !== undefined) {
+      if (heroes.length > 0) {
         const newArray = await superhero.fetchGroupById(heroes);
         dispatch(fetchMyHeroes(newArray));
       }

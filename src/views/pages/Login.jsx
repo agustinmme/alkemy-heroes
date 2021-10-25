@@ -3,9 +3,12 @@ import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import { login } from "../../actions/authAction";
+import { fetchMyHeroes } from "../../actions/superheroActions";
 import Logo from "../../components/Logo/Logo";
 import loginServices from "../../services/login";
 import Footer from "../../components/Footer/Footer";
+import storage from "../../services/storage";
+import superhero from "../../services/superhero";
 import "./Login.css";
 function App({ history }) {
   const [user, setUser] = useState({});
@@ -68,12 +71,16 @@ function App({ history }) {
                           token: token,
                         })
                       );
+                      const heroes = storage.getHereos();
+                      const newArray = await superhero.fetchGroupById(heroes);
+                      
                       dispatch(
                         login({
                           email: values.email,
                           token,
                         })
                       );
+                      dispatch(fetchMyHeroes(newArray));
                       history.push("/dash");
                     } catch (error) {
                       setErroAlert(error.message);
