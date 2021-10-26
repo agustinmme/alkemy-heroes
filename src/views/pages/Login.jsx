@@ -41,7 +41,7 @@ function App({ history }) {
                   validate={(values) => {
                     let errors = {};
                     if (!values.email) {
-                      errors.email = "Debes ingresar tu email/usuario";
+                      errors.email = "Enter your email / username";
                     } else if (
                       !/^[a-z0-9_.]+@[a-z0-9]+\.[a-z0-9_.]+$/i.test(
                         values.email
@@ -51,7 +51,7 @@ function App({ history }) {
                     }
 
                     if (!values.password) {
-                      errors.password = "Debes ingresar tu contraseña";
+                      errors.password = "Enter your password";
                     }
                     return errors;
                   }}

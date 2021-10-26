@@ -5,6 +5,7 @@ import storage from "../../services/storage";
 import superhero from "../../services/superhero";
 import helper from "../../helper/helperSuperheroes";
 import { useHistory } from "react-router";
+import CardMessage from "../CardMessage/CardMessage";
 function CardSearch({ name, img, id }) {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -33,14 +34,14 @@ function CardSearch({ name, img, id }) {
           history.push("/dash");
         } else {
           setHeroCap(
-            `No puedes agregar mas Heroes a tu equipo de tipo ${heroAux.alignment}`
+            `You can't add more ${heroAux.alignment.toUpperCase()}`
           );
           setTimeout(() => {
             setHeroCap("");
           }, 3000);
         }
       } else {
-        setHeroCap(`No puedes agregar de nuevo a ${heroAux.name}`);
+        setHeroCap(`You can't add ${heroAux.name} back`);
         setTimeout(() => {
           setHeroCap("");
         }, 3000);
@@ -53,27 +54,22 @@ function CardSearch({ name, img, id }) {
     }
   };
   return (
-    <div className="card mt-2 mx-5">
+    <div>
       {heroCap ? (
-        <div className={"card-header alert-danger p-3 fs-5"}>
-        <div className="text-center" role="alert">
-        {heroCap}
-        </div>
-      </div>
+        <CardMessage type={"info"} title={heroCap} />
       ) : (
-        <div className="d-flex justify-content-between align-items-center">
-          <div className="user d-flex flex-row align-items-center">
-            <img src={img} width="150" className="user-img " />
-            <span>
-              <p className="fw-bold text-primary m-3">{name}</p>
-            </span>
+        <div className="card mt-2 mx-5">
+          <div className="d-flex justify-content-between align-items-center">
+            <div className="user d-flex flex-row align-items-center">
+              <img src={img} width="150" className="user-img " />
+              <span>
+                <p className="fw-bold text-primary m-3">{name}</p>
+              </span>
+            </div>
+            <button className={"btn btn-primary m-3"} onClick={handlerAddHero}>
+              ADD
+            </button>
           </div>
-          <button
-            className={"btn btn-primary m-3"}
-            onClick={handlerAddHero}
-          >
-            ADD
-          </button>
         </div>
       )}
     </div>

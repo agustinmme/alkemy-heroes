@@ -36,11 +36,11 @@ function SearchHeroes() {
             validate={(values) => {
               let errors = {};
               if (!values.searchHero) {
-                errors.searchHero = "Ingrese un nombre de héroe por favor";
+                errors.searchHero = "Enter a name please";
               }
               return errors;
             }}
-            onSubmit={async (values, { resetForm }) => {
+            onSubmit={async (values) => {
               try {
                 setHelp(false);
                 setLoading(true);
@@ -49,6 +49,7 @@ function SearchHeroes() {
                 );
                 setSearchHeroes(results);
                 setLoading(false);
+
               } catch (error) {
                 setErrorAlert(error.message);
                 setTimeout(() => {
@@ -114,9 +115,9 @@ function SearchHeroes() {
  
           {!searchHeroes && !loading ? <CardMessage
             type={"warning"}
-            title={"No hay Heroes que coincidan con tu búsqueda."}
-            text={"Revisá la ortografía de la palabra."}
-            text2={"Utilizá palabras más genéricas o menos palabras."}
+            title={"There are no Heroes that match your search."}
+            text={"Check the spelling of the word."}
+            text2={"Use more generic words or fewer words."}
           />
         :null}
 
@@ -127,7 +128,7 @@ function SearchHeroes() {
         {help ? (
           <CardMessage
             type={"info"}
-            title={"Hola 👋, puedes buscar a tus heroes aqui ☝"}
+            title={"Hi 👋, you can search for your heroes here ☝"}
           />
         ) : null}
 

@@ -7,7 +7,6 @@ import Footer from "../../../components/Footer/Footer";
 import PowerStatsTeam from "../../../components/PowerStatsTeam/PowerStatsTeam";
 import CardMessage from "../../../components/CardMessage/CardMessage";
 
-
 function Home({ history }) {
   const { superheroes } = useSelector((state) => state);
   useEffect(() => {
@@ -17,10 +16,11 @@ function Home({ history }) {
       behavior: "smooth",
     });
   }, []);
+
   return (
     <>
       <Navbar />
-     
+
       <div className="container-fluid bg-primary banner">
         <div className="container-lg">
           <p className="title text-center ">SUPERHERO</p>
@@ -54,10 +54,9 @@ function Home({ history }) {
           {superheroes.length === 0 ? (
             <CardMessage
               type={"info"}
-              title={"Hola 👋, busca a tus heroes en ADD HERO"}
+              title={"Hi 👋, look for your heroes in ADD HERO"}
             />
           ) : null}
-
         </div>
         <Footer padding={true} />
       </div>
