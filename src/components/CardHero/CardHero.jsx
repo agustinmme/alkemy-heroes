@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { deleteHero } from "../../actions/superheroActions";
 import storage from "../../services/storage";
+import ModalDelete from "../Modals/ModalDelete";
 import "./CardHero.css";
 function CardHero({ name, powerstats, id, img }) {
   const history = useHistory();
@@ -57,9 +58,11 @@ function CardHero({ name, powerstats, id, img }) {
           >
             details
           </button>
+          <ModalDelete id={`id${id}`} deleteHero={deleteThisHero} name={name}/>
           <button
             className="btn btn-danger text-uppercase m-1"
-            onClick={deleteThisHero}
+            data-bs-toggle="modal"
+            data-bs-target={`#id${id}`}
           >
             remove
           </button>
