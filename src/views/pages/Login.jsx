@@ -10,11 +10,11 @@ import Footer from "../../components/Footer/Footer";
 import storage from "../../services/storage";
 import superhero from "../../services/superhero";
 import "./Login.css";
+
 function App({ history }) {
   const [user, setUser] = useState({});
   const [erroAlert, setErroAlert] = useState("");
   const dispatch = useDispatch();
-
   return (
     <>
       <div className="bg">

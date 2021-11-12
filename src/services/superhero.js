@@ -1,8 +1,9 @@
 import axios from "axios";
 
-const tokenHero = "10226544957598740";
-
-const baseUrl = `https://superheroapi.com/api.php/${tokenHero}`;
+// Al estar usando vite tengo que utilizar de una manera diferente las variables de entorno.
+//Normalmente en react seria process.env y el nombre porque corre por debajo dotenv...
+// En el caso de nodejs se instala dotenv se requiere/importa y ya se podria utilizar EJ: process.env.ALKEMY_KEY
+const baseUrl = import.meta.env.VITE_SUPERHEROES;
 
 const fetchById = async (id) => {
   const { data } = await axios.get(`${baseUrl}/${id}`);
