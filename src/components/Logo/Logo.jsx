@@ -2,7 +2,8 @@ import React from "react";
 import logoIso from "../../assets/logo-alkemy.png";
 import logoLetter from "../../assets/logo-alkemy2.png";
 import "./Logo.css";
-function Logo({ type }) {
+import PropTypes from "prop-types";
+function Logo({ type = 1 }) {
   return (
     <img
       src={type === 1 ? logoIso : logoLetter}
@@ -15,5 +16,9 @@ function Logo({ type }) {
     />
   );
 }
+
+Logo.propTypes = {
+  type: PropTypes.number,
+};
 
 export default Logo;

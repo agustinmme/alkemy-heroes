@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addHeroes } from "../../actions/superheroActions";
+import { useHistory } from "react-router";
 import storage from "../../services/storage";
 import superhero from "../../services/superhero";
 import helper from "../../helper/helperSuperheroes";
-import { useHistory } from "react-router";
 import CardMessage from "../CardMessage/CardMessage";
+import PropTypes from "prop-types";
+
 function CardSearch({ name, img, id }) {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -75,5 +77,13 @@ function CardSearch({ name, img, id }) {
     </div>
   );
 }
+
+
+CardSearch.propTypes = {
+  name: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+};
+
 
 export default CardSearch;

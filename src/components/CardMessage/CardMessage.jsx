@@ -1,6 +1,6 @@
 import React from "react";
-
-function CardMessage({ title, type, text, text2 }) {
+import PropTypes from "prop-types";
+function CardMessage({ title, type, text = "", moreText ="" }) {
   return (
     <section className="py-5">
         <div className="row">
@@ -11,7 +11,7 @@ function CardMessage({ title, type, text, text2 }) {
               <h4>{title}</h4>
               <p className="mb-0 mt-2 font-italic"></p>
               {text}
-              <p className="mb-0 mt-2 font-italic">{text2}</p>
+              <p className="mb-0 mt-2 font-italic">{moreText}</p>
             </blockquote>
           </div>
         </div>
@@ -19,5 +19,12 @@ function CardMessage({ title, type, text, text2 }) {
     </section>
   );
 }
+
+CardMessage.propTypes = {
+  title: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  text: PropTypes.string,
+  moreText: PropTypes.string,
+};
 
 export default CardMessage;

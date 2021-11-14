@@ -1,7 +1,8 @@
 import React from "react";
 import { LoopCircleLoading } from "react-loadingg";
 import Logo from "../Logo/Logo";
-const Loader = ({ type }) => {
+import PropTypes from "prop-types";
+const Loader = ({ type = 1 }) => {
   return (
     <>
       {type !== 1 ? (
@@ -21,4 +22,10 @@ const Loader = ({ type }) => {
     </>
   );
 };
+
+Loader.propTypes = {
+  type: PropTypes.number,
+};
+
+
 export default Loader;

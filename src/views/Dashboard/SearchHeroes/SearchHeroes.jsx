@@ -117,7 +117,7 @@ function SearchHeroes() {
             type={"warning"}
             title={"There are no Heroes that match your search."}
             text={"Check the spelling of the word."}
-            text2={"Use more generic words or fewer words."}
+            moreText={"Use more generic words or fewer words."}
           />
         :null}
 

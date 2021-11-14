@@ -1,6 +1,6 @@
 import React from 'react'
-
-function ModalDelete({id,title,name,deleteHero}) {
+import PropTypes from "prop-types";
+function ModalDelete({id,name="",deleteHero}) {
     return (
        
 <div className="modal fade" id={id} tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -20,5 +20,11 @@ function ModalDelete({id,title,name,deleteHero}) {
 </div>
     )
 }
+
+ModalDelete.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  deleteHero: PropTypes.func.isRequired,
+};
 
 export default ModalDelete

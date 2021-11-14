@@ -1,22 +1,27 @@
 import React from "react";
+import PropTypes, { shape } from "prop-types";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { deleteHero } from "../../actions/superheroActions";
 import storage from "../../services/storage";
 import ModalDelete from "../Modals/ModalDelete";
 import "./CardHero.css";
+
 function CardHero({ name, powerstats, id, img }) {
   const history = useHistory();
   const dispatch = useDispatch();
+
   const covertAndSorted = (data) => {
     let entries = Object.entries(data);
     let sorted = entries.sort((b, a) => a[1] - b[1]);
     return sorted;
   };
+
   const deleteThisHero = () => {
     storage.deleteHero(id);
-    dispatch(deleteHero("" + id));
+    dispatch(deleteHero(id));
   };
+
   return (
     <div className="col-md-3">
       <div className="card card-hero text-center">
@@ -58,7 +63,7 @@ function CardHero({ name, powerstats, id, img }) {
           >
             details
           </button>
-          <ModalDelete id={`id${id}`} deleteHero={deleteThisHero} name={name}/>
+          <ModalDelete id={`id${id}`} deleteHero={deleteThisHero} name={name} />
           <button
             className="btn btn-danger text-uppercase m-1"
             data-bs-toggle="modal"
@@ -71,5 +76,20 @@ function CardHero({ name, powerstats, id, img }) {
     </div>
   );
 }
+
+//El id que devuelve el Api es un string.
+CardHero.propTypes = {
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  powerstats: shape({
+    intelligence: PropTypes.string.isRequired,
+        strength: PropTypes.string.isRequired,
+        speed: PropTypes.string.isRequired,
+        durability: PropTypes.string.isRequired,
+        power: PropTypes.string.isRequired,
+        combat: PropTypes.string.isRequired
+  }),
+  img: PropTypes.string.isRequired,
+}; 
 
 export default CardHero;
