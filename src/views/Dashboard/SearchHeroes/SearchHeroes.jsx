@@ -1,9 +1,9 @@
 import React, { useState,useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import axios from "axios";
 import Footer from "../../../components/Footer/Footer";
 import Navbar from "../../../components/Navbar/Navbar";
 import CardMessage from "../../../components/CardMessage/CardMessage";
-import superhero from "../../../services/superhero";
 import CardSearch from "../../../components/CardSearch/CardSearch";
 import Loader from "../../../components/Loader/Loader";
 import "./SearchHeroes.css";
@@ -12,6 +12,7 @@ function SearchHeroes() {
   const [searchHeroes, setSearchHeroes] = useState([]);
   const [help, setHelp] = useState(true);
   const [errorAlert, setErrorAlert] = useState("");
+  const baseURL = import.meta.env.VITE_SUPERHEROES;
   useEffect(() => {
     window.scrollTo({
         top: 0,
@@ -44,13 +45,13 @@ function SearchHeroes() {
               try {
                 setHelp(false);
                 setLoading(true);
-                const { results } = await superhero.fetchByName(
-                  values.searchHero
-                );
-                setSearchHeroes(results);
+                
+                const { data } = await axios.get(`${baseURL}/search/${values.searchHero}`);
+                setSearchHeroes(data.results);
                 setLoading(false);
 
               } catch (error) {
+                setLoading(false);
                 setErrorAlert(error.message);
                 setTimeout(() => {
                   setErrorAlert("");
