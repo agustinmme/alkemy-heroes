@@ -83,7 +83,7 @@ function App({ history }) {
                       dispatch(fetchMyHeroes(newArray));
                       history.push("/dash");
                     } catch (error) {
-                      setErroAlert(error.message);
+                      setErroAlert(error.response.status+"  "+error.response.data.error);
                       setTimeout(() => {
                         setErroAlert("");
                       }, 4000);

@@ -23,7 +23,7 @@ function CardHero({ name, powerstats, id, img }) {
   };
 
   return (
-    <div className="col-md-3">
+    <div data-test-id="hero" className="col-md-3">
       <div className="card card-hero text-center">
         <div className="img mb-2 overflow-hidden">
           <img src={img} className="img-fluid rounded-top img-max" />

@@ -13,13 +13,7 @@ function SearchHeroes() {
   const [help, setHelp] = useState(true);
   const [errorAlert, setErrorAlert] = useState("");
   const baseURL = import.meta.env.VITE_SUPERHEROES;
-  useEffect(() => {
-    window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "smooth"
-      })
-  }, [])
+
   return (
     <>
       <Navbar />
@@ -28,8 +22,6 @@ function SearchHeroes() {
           <p className="title text-center text-uppercase">Search</p>
         </div>
       </div>
-      <div className="container mt-5 mb-5 ">
-        <div className="p-3 card  over-card bg-white rounded">
           <Formik
             initialValues={{
               searchHero: "",
@@ -66,6 +58,7 @@ function SearchHeroes() {
                     <div className="search ">
                       <i className="search-icon">🦸‍♂️</i>
                       <Field
+                        data-test-id="searchHeroInput"
                         type="text"
                         id="searchHero"
                         name="searchHero"
@@ -100,11 +93,10 @@ function SearchHeroes() {
               </Form>
             )}
           </Formik>
-        </div>
+  
 
-        {loading ? <Loader type={1} /> : null}
-
-
+       
+          <div className="heroes mt-3">
          {searchHeroes && searchHeroes.map((hero) => (
             <CardSearch
               key={hero.id}
@@ -113,7 +105,7 @@ function SearchHeroes() {
               id={hero.id}
             />
           ))}
- 
+          </div>
           {!searchHeroes && !loading ? <CardMessage
             type={"warning"}
             title={"There are no Heroes that match your search."}
@@ -132,9 +124,10 @@ function SearchHeroes() {
             title={"Hi 👋, you can search for your heroes here ☝"}
           />
         ) : null}
+         {loading ? <div className="d-flex justify-content-center"><Loader type={1} /></div> : null}
+
 
         {loading ? null : <Footer padding={true} />}
-      </div>
     </>
   );
 }
