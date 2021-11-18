@@ -5,15 +5,13 @@ import { useHistory } from "react-router";
 import storage from "../../services/storage";
 import superhero from "../../services/superhero";
 import helper from "../../helper/helperSuperheroes";
-import CardMessage from "../CardMessage/CardMessage";
 import PropTypes from "prop-types";
+import Swal from "sweetalert";
 
 function CardSearch({ name, img, id }) {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [heroCap, setHeroCap] = useState(false);
   const { superheroes } = useSelector((state) => state);
-
   const handlerAddHero = async () => {
     try {
       const data = await superhero.fetchById(id);
@@ -35,55 +33,53 @@ function CardSearch({ name, img, id }) {
 
           history.push("/dash");
         } else {
-          setHeroCap(
-            `You can't add more ${heroAux.alignment.toUpperCase()}`
-          );
-          setTimeout(() => {
-            setHeroCap("");
-          }, 3000);
+          Swal({
+            icon: "info",
+            title: "Oops...",
+            text: `You can't add more ${heroAux.alignment.toUpperCase()}`,
+          })
         }
       } else {
-        setHeroCap(`You can't add ${heroAux.name} back`);
-        setTimeout(() => {
-          setHeroCap("");
-        }, 3000);
+        Swal({
+          icon: "info",
+          title: "Oops...",
+          text: `You can't add ${heroAux.name} back`,
+        })
       }
     } catch (error) {
-      setHeroCap(`${error.message}`);
-      setTimeout(() => {
-        setHeroCap("");
-      }, 3000);
+      Swal({
+        icon: "error",
+        title: "Oops...",
+        text: `${error.message}`,
+      })
     }
   };
   return (
-    <div>
-      {heroCap ? (
-        <CardMessage type={"info"} title={heroCap} />
-      ) : (
-        <div className="card mt-2 mx-5">
-          <div className="d-flex justify-content-between align-items-center">
-            <div className="user d-flex flex-row align-items-center">
-              <img src={img} width="150" className="user-img " />
-              <span>
-                <p className="fw-bold text-primary m-3">{name}</p>
-              </span>
+    <>
+        <div data-test-id="hero" className="col-md-3">
+          <div className="card card-hero text-center">
+            <div className="img mb-2 overflow-hidden">
+              <img src={img} className="img-fluid rounded-top img-max" />
             </div>
-            <button className={"btn btn-primary m-3"} onClick={handlerAddHero}>
-              ADD
-            </button>
+            <h5 className="mb-1 text-capitalize">{name}</h5>
+            <div className="mt-4 actions p-1 d-flex">
+              <button
+                className="btn btn-primary text-uppercase m-1"
+                onClick={handlerAddHero}
+              >
+                ADD
+              </button>
+            </div>
           </div>
         </div>
-      )}
-    </div>
+    </>
   );
 }
-
 
 CardSearch.propTypes = {
   name: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
 };
-
 
 export default CardSearch;
