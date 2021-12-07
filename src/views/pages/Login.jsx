@@ -10,11 +10,62 @@ import Footer from "../../components/Footer/Footer";
 import storage from "../../services/storage";
 import superhero from "../../services/superhero";
 import "./Login.css";
+import * as Yup from "yup";
 
 function App({ history }) {
   const [user, setUser] = useState({});
   const [erroAlert, setErroAlert] = useState("");
   const dispatch = useDispatch();
+
+  const onSubmit = async (values, { resetForm }) => {
+    try {
+      const user = await loginServices.login({
+        email: values.email,
+        password: values.password,
+      });
+      setUser(user);
+      resetForm();
+      const { token } = user;
+      window.localStorage.setItem(
+        "LoggedAlkemyChallenge",
+        JSON.stringify({
+          email: values.email,
+          token: token,
+        })
+      );
+      const heroes = storage.getHereos();
+      const newArray = await superhero.fetchGroupById(heroes);
+
+      dispatch(
+        login({
+          email: values.email,
+          token,
+        })
+      );
+      dispatch(fetchMyHeroes(newArray));
+      history.push("/dash");
+    } catch (error) {
+      setErroAlert(error.response.status + "  " + error.response.data.error);
+      setTimeout(() => {
+        setErroAlert("");
+      }, 4000);
+    }
+  };
+
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .required("Enter your email / username")
+      .email("Enter a mail"),
+    password: Yup.string()
+      .required("Enter your password")
+      .min(5, "Password is short"),
+  });
+
   return (
     <>
       <div className="bg">
@@ -34,61 +85,9 @@ function App({ history }) {
                   Challenge Alkemy
                 </div>
                 <Formik
-                  initialValues={{
-                    email: "",
-                    password: "",
-                  }}
-                  validate={(values) => {
-                    let errors = {};
-                    if (!values.email) {
-                      errors.email = "Enter your email / username";
-                    } else if (
-                      !/^[a-z0-9_.]+@[a-z0-9]+\.[a-z0-9_.]+$/i.test(
-                        values.email
-                      )
-                    ) {
-                      errors.email = "El formato no es valido";
-                    }
-
-                    if (!values.password) {
-                      errors.password = "Enter your password";
-                    }
-                    return errors;
-                  }}
-                  onSubmit={async (values, { resetForm }) => {
-                    try {
-                      const user = await loginServices.login({
-                        email: values.email,
-                        password: values.password,
-                      });
-                      setUser(user);
-                      resetForm();
-                      const { token } = user;
-                      window.localStorage.setItem(
-                        "LoggedAlkemyChallenge",
-                        JSON.stringify({
-                          email: values.email,
-                          token: token,
-                        })
-                      );
-                      const heroes = storage.getHereos();
-                      const newArray = await superhero.fetchGroupById(heroes);
-                      
-                      dispatch(
-                        login({
-                          email: values.email,
-                          token,
-                        })
-                      );
-                      dispatch(fetchMyHeroes(newArray));
-                      history.push("/dash");
-                    } catch (error) {
-                      setErroAlert(error.response.status+"  "+error.response.data.error);
-                      setTimeout(() => {
-                        setErroAlert("");
-                      }, 4000);
-                    }
-                  }}
+                  initialValues={initialValues}
+                  validationSchema={validationSchema}
+                  onSubmit={onSubmit}
                 >
                   {({ errors, touched }) => (
                     <Form className="form">

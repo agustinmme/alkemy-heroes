@@ -5,6 +5,7 @@ import Navbar from "../../../components/Navbar/Navbar";
 import CardMessage from "../../../components/CardMessage/CardMessage";
 import CardSearch from "../../../components/CardSearch/CardSearch";
 import Loader from "../../../components/Loader/Loader";
+import * as Yup from "yup";
 import "./SearchHeroes.css";
 function SearchHeroes() {
   const [loading, setLoading] = useState(false);
@@ -12,6 +13,38 @@ function SearchHeroes() {
   const [help, setHelp] = useState(true);
   const [errorAlert, setErrorAlert] = useState("");
   const baseURL = import.meta.env.VITE_SUPERHEROES;
+
+
+
+
+  const onSubmit = async (values) => {
+    try {
+      setHelp(false);
+      setLoading(true);
+
+      const { data } = await axios.get(
+        `${baseURL}/search/${values.searchHero}`
+      );
+      setSearchHeroes(data.results);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      setErrorAlert(error.message);
+      setTimeout(() => {
+        setErrorAlert("");
+      }, 4000);
+    }
+  };
+
+  const initialValues = {
+    searchHero: "",
+  };
+
+  const validationSchema = Yup.object({
+    searchHero: Yup.string()
+      .required("Please enter a name")
+  });
+
 
   return (
     <>
@@ -23,34 +56,9 @@ function SearchHeroes() {
       </div>
 
       <Formik
-        initialValues={{
-          searchHero: "",
-        }}
-        validate={(values) => {
-          let errors = {};
-          if (!values.searchHero) {
-            errors.searchHero = "Enter a name please";
-          }
-          return errors;
-        }}
-        onSubmit={async (values) => {
-          try {
-            setHelp(false);
-            setLoading(true);
-
-            const { data } = await axios.get(
-              `${baseURL}/search/${values.searchHero}`
-            );
-            setSearchHeroes(data.results);
-            setLoading(false);
-          } catch (error) {
-            setLoading(false);
-            setErrorAlert(error.message);
-            setTimeout(() => {
-              setErrorAlert("");
-            }, 4000);
-          }
-        }}
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}
       >
         {({ errors, touched }) => (
           <Form>
