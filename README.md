@@ -1,6 +1,6 @@
 # alkemy-heroes
 Challenge Alkemy react
-Para usar ver la app usar :<br/>
+- Intro :<br/>
 npm i <br/>
 npm run dev <br/>
 ## .env <br/>
