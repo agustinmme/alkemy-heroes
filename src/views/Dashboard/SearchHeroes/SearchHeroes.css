@@ -15,12 +15,12 @@
 .search input {
     height: 60px;
     text-indent: 17px;
-    border: 2px solid #d6d4d4;
+    border: 3px solid #d6d4d4;
 }
 
 .search input:focus {
     box-shadow: none;
-    border: 2px solid #80dbff
+    border: 3px solid #80dbff
 }
 
 .search-icon {
@@ -29,22 +29,7 @@
     left: 7px;
 }
 
-.button-inside {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    height: 50px;
-    width: 110px;
-    background: #80dbff;
-}
-.button-inside-error {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  height: 50px;
-  width: 110px;
-  background: #ff8080;
-}
+
 .board-max{
     max-height: 12vh;
 }
